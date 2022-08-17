@@ -10,7 +10,7 @@ class Main extends React.Component {
       <HornedBeast
         key={idx}
         image_url={beast.image_url}
-        beast={beast.title}
+        title={beast.title}
         description={beast.description}
         keyword={beast.keyword}
         horns={beast.horns}/>

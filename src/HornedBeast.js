@@ -20,11 +20,9 @@ class HornedBeast extends React.Component {
     return (
       <article className="beast">
         <h2>{this.props.title}</h2>
-        <img src={this.props.image_url} alt={this.props.alt} title={this.props.description}/>
-        <p>{this.props.horns}</p>
-        <p>{this.props.keyword}</p>
-        <p>♥️{this.state.votes}</p>
-        <p onClick={this.handleWaves}>Say Hello!</p>
+        <img src={this.props.image_url} alt={this.props.keyword} title={this.props.description}/>
+        <p>{this.state.votes}</p>
+        <p onClick={this.handleWaves}>♥️</p>
         <p>{this.props.description}</p>
       </article>
     )
