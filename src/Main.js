@@ -1,20 +1,23 @@
 import React from 'react';
 import HornedBeast from './HornedBeast.js';
 import './Main.css';
-import ListOfBeasts from './data.json';
 
 class Main extends React.Component {
   
   render() {
-    let newArr = ListOfBeasts.map((beast, idx) => (
-      <HornedBeast
+    let newArr = this.props.data.map((beast, idx) => {
+      return <HornedBeast
         key={idx}
         image_url={beast.image_url}
         title={beast.title}
         description={beast.description}
         keyword={beast.keyword}
-        horns={beast.horns}/>
-    ))
+        horns={beast.horns}
+        temp={this.props.temp}
+        beast={beast}
+        />
+
+  });
 
     return (
       <main>
@@ -23,8 +26,6 @@ class Main extends React.Component {
     );
   }
   
-  
 }
-
 
 export default Main;
