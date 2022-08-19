@@ -5,8 +5,7 @@ import Main from './Main.js';
 import Footer from './Footer.js';
 import data from './data.json';
 import SelectedBeast from './SelectedBeast';
-// import Modal from 'react-bootstrap/Modal';
-// import { Card } from 'react-bootstrap';
+import Form from './Form.js';
 
 
 class App extends React.Component {
@@ -15,12 +14,32 @@ class App extends React.Component {
     super(props);
     this.state = {
       showModal: false,
-      beast: {}
+      beast: {},
+      sortHornBy: 0,
+      filteredHorns: data,
     }
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    if (this.state.sortHornBy !== 0) {
+      let specificHorns = data.filter(num => num.horns === this.state.sortHornBy);
+      this.setState({ filteredHorns: specificHorns });
+    }
+     else { 
+      this.setState({ filteredHorns: data });
+    }
+  }
+
+
+  handleSelect = (e) => {
+    let selected = parseInt(e.target.value);
+    this.setState({
+      sortHornBy: selected
+    });
+  }
+
   handleShowModal = (beast) => {
-    console.log(beast);
     this.setState({
       showModal: true,
       beast: beast
@@ -33,29 +52,29 @@ class App extends React.Component {
     });
   }
 
+
+
   render() {
     return (
       <>
-        <Header/>
-        <Main data={data} temp={this.handleShowModal}/>
-        <Footer/>
+        <Header />
+        <Form
+          onSubmit={this.handleSubmit}
+          onChange={this.handleSelect}
+        />
+        <Main
+          data={this.state.filteredHorns}
+          temp={this.handleShowModal} />
+        <Footer />
         <SelectedBeast
-        beast={this.state.beast}
-        show={this.state.showModal}
-        onHide={this.handleHideModal}
-      >
-        {/* <Card className="beast">
-          <title title={this.state.beast.title}></title>
-          <img src={this.state.beast.image_url} alt={this.state.beast.keyword} title={this.state.beast.description}></img>
-          <p>{this.state.beast.votes}</p>
-          <p>♥️</p>
-          <p>{this.state.beast.description}</p>
-        </Card> */}
-      </SelectedBeast>
-        
+          beast={this.state.beast}
+          show={this.state.showModal}
+          onHide={this.handleHideModal}
+        />
       </>
     )
   }
 }
+
 
 export default App;

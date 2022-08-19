@@ -2,7 +2,6 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { Card } from 'react-bootstrap';
 
-
 class SelectedBeast extends React.Component {
 
   render() {
