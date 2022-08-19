@@ -7,7 +7,7 @@ class Main extends React.Component {
   render() {
     let newArr = this.props.data.map((beast, idx) => {
       return <HornedBeast
-        key={idx}
+        key={beast._id}
         image_url={beast.image_url}
         title={beast.title}
         description={beast.description}
